@@ -9,6 +9,7 @@ function NameController($scope) {
     $scope.lastName = "Doe",
     $scope.fullName = function() {
          return $scope.firstName + " " + $scope.lastName;
-    }
+    },
+    $scope.list = ['Max', 'Steve', 'Amber', 'Ricky', 'Bibhash', 'Abhash']
 }
 

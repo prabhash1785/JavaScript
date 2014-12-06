@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
@@ -9,6 +10,10 @@
 First Name: <input type="text" ng-model="firstName"></br>
 LastName: <input type="text" ng-model="lastName"></br>
 Full Name: {{fullName()}}
+
+<p>Example of Angular Filter:</p>
+Full Name in Upper Case: {{fullName() | uppercase}}
+
 </div>
 
 <script src="NameController.js"></script>
