@@ -1,0 +1,17 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body>
+
+<div ng-app="" ng-controller="NameController">
+First Name: <input type="text" ng-model="firstName"></br>
+LastName: <input type="text" ng-model="lastName"></br>
+Full Name: {{fullName()}}
+</div>
+
+<script src="NameController.js"></script>
+
+</body>
+</html>
