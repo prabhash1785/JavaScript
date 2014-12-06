@@ -10,6 +10,8 @@
 <div ng-app="" ng-init="person = {firstName : 'Amber', lastName : 'Green'}">
     <p>First Name: {{person.firstName}}</p>
     <p>Last Name: {{person.lastName}}</p>
+
+    <p>Full Name: <span ng-bind="person.firstName"></span> <span ng-bind="person.lastName"></span></p>
 </div>
 
 </body>
