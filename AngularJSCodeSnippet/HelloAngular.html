@@ -14,5 +14,14 @@
     <p>Full Name: <span ng-bind="person.firstName"></span> <span ng-bind="person.lastName"></span></p>
 </div>
 
+<div ng-app="" ng-init="obj = [{name : 'Amber', city : 'Chicago'}, {name : 'Ricky', city : 'Delhi'}, {name : 'Max', city : 'Iowa'}]">
+    <p>Print all the data using Angular ng-repeat</p>
+    <ul>
+        <li ng-repeat="x in obj">
+            Name: {{x.name}} City : {{x.city}}
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>
