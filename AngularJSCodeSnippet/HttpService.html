@@ -18,10 +18,15 @@
 
 </div>
 
+
+<!-- $scope is application object holds variables and functions
+     $http is XMLHttpRequestObject for requesting external data
+-->
 <script>
     function customersController($scope,$http) {
         $http.get("http://www.w3schools.com//website/Customers_JSON.php")
                 .success(function(response) {$scope.names = response;});
+
     }
 </script>
 
