@@ -23,4 +23,9 @@ var animal2 = new Animal(); //this is same as Object.create(Animal.prototype)
 console.log("animal2: " + animal2);
 console.log("Prototype of animal2: " + Object.getPrototypeOf(animal2));
 
+//Use prototype to add properties to all the objects created from same function
+Animal.prototype.size = "medium"; //this property would be accessible to all objects created using Animal constructor
+
+console.log("animal1 type: " + animal1.size);
+console.log("animal2 type: " + animal2.size);
 
