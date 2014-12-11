@@ -23,3 +23,4 @@ var animal2 = new Animal(); //this is same as Object.create(Animal.prototype)
 console.log("animal2: " + animal2);
 console.log("Prototype of animal2: " + Object.getPrototypeOf(animal2));
 
+
