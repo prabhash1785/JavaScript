@@ -47,7 +47,7 @@ console.log("obj3 === obj1 => " + result3);
 
     var flag = true;
 
-    for(member in obj1) {
+    for(var member in obj1) {
         console.log("In obj1: member = " + member + " :: obj1[member] = " + obj1[member]);
         console.log("In obj2: obj2[member] = " + obj2[member]);
 
