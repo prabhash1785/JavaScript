@@ -5,10 +5,10 @@
  */
 
 var obj1 = {
-    name : {
-        firstName : 'Ricky',
-        lastName : "Rathore"
-    },
+//    name : {
+//        firstName : 'Ricky',
+//        lastName : "Rathore"
+//    },
     age : 29,
     city : 'San Jose',
     state : 'CA',
@@ -16,10 +16,10 @@ var obj1 = {
 };
 
 var obj2 = {
-    name : {
-        firstName : 'Ricky',
-        lastName : "Rathore"
-    },
+//    name : {
+//        firstName : 'Ricky',
+//        lastName : "Rathore"
+//    },
     age : 29,
     city : 'San Jose',
     state : 'CA',
@@ -37,3 +37,33 @@ console.log("obj1 === obj2 => " + result2); //false
 var obj3 = obj1; //now their reference is going to be same
 var result3 = obj3 === obj1;
 console.log("obj3 === obj1 => " + result3);
+
+// Function for deep comparison of nested objects
+(function deepComparator() {
+
+    if(obj1 === undefined || obj2 === undefined) {
+        throw "One of your objects is undefined, can't process with deep comparison!!";
+    }
+
+    var flag = true;
+
+    for(member in obj1) {
+        console.log("In obj1: member = " + member + " :: obj1[member] = " + obj1[member]);
+        console.log("In obj2: obj2[member] = " + obj2[member]);
+
+        if(obj1[member] !== obj2[member]) {
+            flag = false;
+            break;
+        }
+
+    }
+
+    if(flag) {
+        console.log("Obj1 is deep equal to Obj2");
+    } else {
+        console.log("Obj1 is not deep equal to Obj2");
+    }
+
+
+})();
+
