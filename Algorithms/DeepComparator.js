@@ -27,6 +27,9 @@ var obj2 = {
 };
 
 var nestedObj = {
+    f : function() {
+      console.log("I am function!");
+    },
     location : ["India", "US"],
     name : {
         firstName : 'Ricky',
@@ -100,6 +103,12 @@ function printMembers(obj) {
         if(dataType === 'object') {
             console.log("Object type encountered, exiting the loop");
             break;
+        }
+
+        if(dataType === 'function') {
+            var exception = "these are data objects, functions not allowed in data objects";
+            console.log(exception);
+            throw exception;
         }
 
     }
