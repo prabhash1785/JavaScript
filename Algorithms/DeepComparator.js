@@ -26,6 +26,17 @@ var obj2 = {
     country : 'US'
 };
 
+var nestedObj = {
+    name : {
+        firstName : 'Ricky',
+        lastName : "Rathore"
+    },
+    age : 29,
+    city : 'San Jose',
+    state : 'CA',
+    country : 'US'
+};
+
 //check equality of objects using different techniques
 // === this checks for reference
 var result1 = obj1 == obj2;
@@ -76,9 +87,18 @@ function printMembers(obj) {
 
     for(var x in obj) {
         console.log(x + " => " + obj[x]);
+
+        var dataType = typeof obj[x];
+        console.log("Data type of object: " + dataType);
+
+        if(dataType === 'object') {
+            console.log("Object type encountered, exiting the loop");
+            break;
+        }
+
     }
 
 }
 
 console.log("\nAll object members:");
-printMembers(obj1);
+printMembers(nestedObj);
