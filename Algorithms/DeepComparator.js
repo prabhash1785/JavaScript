@@ -27,10 +27,10 @@ var obj2 = {
 };
 
 var nestedObj = {
-    f : function() {
-      console.log("I am function!");
-    },
-    location : ["India", "US"],
+//    f : function() {
+//      console.log("I am function!");
+//    },
+//    location : ["India", "US"],
     name : {
         firstName : 'Ricky',
         lastName : "Rathore"
@@ -86,11 +86,18 @@ console.log("obj3 === obj1 => " + result3);
 function printMembers(obj) {
 
     if(obj === undefined) {
-        throw "Undefined object, please provide a valid object!!";
+        console.log("Undefined object encountered!");
+        return;
     }
 
     for(var x in obj) {
         console.log(x + " => " + obj[x]);
+
+        if(dataType === 'function') {
+            var exception = "these are data objects, functions not allowed in data objects";
+            console.log(exception);
+            throw exception;
+        }
 
         if(Array.isArray(obj[x])) {
             console.log("Array type encountered, exiting the loop");
@@ -101,14 +108,10 @@ function printMembers(obj) {
         console.log("Data type of object: " + dataType);
 
         if(dataType === 'object') {
-            console.log("Object type encountered, exiting the loop");
-            break;
-        }
+            console.log("Object type encountered!!");
 
-        if(dataType === 'function') {
-            var exception = "these are data objects, functions not allowed in data objects";
-            console.log(exception);
-            throw exception;
+            printMembers(obj[x]); //recursive function call for nested objects
+
         }
 
     }
