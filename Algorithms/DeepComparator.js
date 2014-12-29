@@ -67,3 +67,18 @@ console.log("obj3 === obj1 => " + result3);
 
 })();
 
+//function to print all the member elements of an object
+function printMembers(obj) {
+
+    if(obj === undefined) {
+        throw "Undefined object, please provide a valid object!!";
+    }
+
+    for(var x in obj) {
+        console.log(x + " => " + obj[x]);
+    }
+
+}
+
+console.log("\nAll object members:");
+printMembers(obj1);
