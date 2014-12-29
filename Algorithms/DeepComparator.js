@@ -27,6 +27,7 @@ var obj2 = {
 };
 
 var nestedObj = {
+    location : ["India", "US"],
     name : {
         firstName : 'Ricky',
         lastName : "Rathore"
@@ -87,6 +88,11 @@ function printMembers(obj) {
 
     for(var x in obj) {
         console.log(x + " => " + obj[x]);
+
+        if(Array.isArray(obj[x])) {
+            console.log("Array type encountered, exiting the loop");
+            break;
+        }
 
         var dataType = typeof obj[x];
         console.log("Data type of object: " + dataType);
