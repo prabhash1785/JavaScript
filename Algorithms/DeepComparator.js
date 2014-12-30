@@ -87,7 +87,7 @@ console.log("obj3 === obj1 => " + result3);
 })();
 
 //function to print all the member elements of an object
-function printMembers(obj) {
+function printMembers(obj, path) {
 
     if(obj === undefined) {
         console.log("Undefined object encountered!");
@@ -108,20 +108,44 @@ function printMembers(obj) {
         }
 
         var dataType = typeof obj[x];
-        console.log("Data type of object: " + dataType);
+        //console.log("Data type of object: " + dataType);
 
         if(dataType === 'object') {
             console.log("Object type encountered!!");
 
-            printMembers(obj[x]); //recursive function call for nested objects
+            path.push(x);
+            printMembers(obj[x], path); //recursive function call for nested objects
+
+            //pop path element from array if there are no embedded objects
+            var hasEmbeddedObject = false;
+            for(var t in obj) {
+                if(typeof t === 'object') {
+                    hasEmbeddedObject = true;
+                    return hasEmbeddedObject;
+                }
+            }
+
+            if(!hasEmbeddedObject) {
+                path.pop();
+            }
 
         }
 
-        console.log(x + " => " + obj[x]);
+        if(path.length > 0) {
+            var objectPath = path[0];
+            for(var p = 1; p < path.length; p++) {
+                objectPath += '.' + path[p];
+            }
+            console.log("Qualified Path of element is: " + objectPath);
+        }
+
+        if(typeof obj[x] !== 'object') {
+            console.log(x + " => " + obj[x]);
+        }
 
     }
 
 }
 
 console.log("\nAll object members:");
-printMembers(nestedObj);
+printMembers(nestedObj, []);
