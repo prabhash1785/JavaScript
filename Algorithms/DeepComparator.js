@@ -96,6 +96,9 @@ function printMembers(obj, path) {
 
     for(var x in obj) {
 
+        var dataType = typeof obj[x];
+        //console.log("Data type of object: " + dataType);
+
         if(dataType === 'function') {
             var exception = "these are data objects, functions not allowed in data objects";
             console.log(exception);
@@ -106,9 +109,6 @@ function printMembers(obj, path) {
             console.log("Array type encountered, exiting the loop");
             break;
         }
-
-        var dataType = typeof obj[x];
-        //console.log("Data type of object: " + dataType);
 
         if(dataType === 'object') {
             console.log("Object type encountered!!");
