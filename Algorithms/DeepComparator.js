@@ -33,7 +33,11 @@ var nestedObj = {
 //    location : ["India", "US"],
     name : {
         firstName : 'Ricky',
-        lastName : "Rathore"
+        lastName : "Rathore",
+        parents : {
+            father : "Joe",
+            mother : "Emmy"
+        }
     },
     age : 29,
     city : 'San Jose',
@@ -91,7 +95,6 @@ function printMembers(obj) {
     }
 
     for(var x in obj) {
-        console.log(x + " => " + obj[x]);
 
         if(dataType === 'function') {
             var exception = "these are data objects, functions not allowed in data objects";
@@ -113,6 +116,8 @@ function printMembers(obj) {
             printMembers(obj[x]); //recursive function call for nested objects
 
         }
+
+        console.log(x + " => " + obj[x]);
 
     }
 
