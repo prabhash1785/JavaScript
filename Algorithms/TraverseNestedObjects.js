@@ -5,6 +5,8 @@
  *
  */
 
+'use strict';
+
 var nestedObj = {
 //    f : function() {
 //      console.log("I am function!");
@@ -24,7 +26,7 @@ var nestedObj = {
     country : 'US'
 };
 
-function printMembers(obj, path) {
+function printObjectMembers(obj, path) {
 
     if(obj === undefined) {
         console.log("Undefined object encountered!");
@@ -51,9 +53,9 @@ function printMembers(obj, path) {
             console.log("Object type encountered!!");
 
             path.push(x);
-            printMembers(obj[x], path); //recursive function call for nested objects
+            printObjectMembers(obj[x], path); //recursive function call for nested objects
 
-            //pop path element from array if there are no embedded objects
+            //pop last path element from array if there are no embedded objects
             var hasEmbeddedObject = false;
             for(var t in obj) {
                 if(typeof t === 'object') {
@@ -68,6 +70,7 @@ function printMembers(obj, path) {
 
         }
 
+        //create qualified names from elements stored in path array
         if(path.length > 0) {
             var objectPath = path[0];
             for(var p = 1; p < path.length; p++) {
@@ -76,6 +79,7 @@ function printMembers(obj, path) {
             console.log("Qualified Path of element is: " + objectPath);
         }
 
+        //print the element if it's not an object
         if(typeof obj[x] !== 'object') {
             console.log(x + " => " + obj[x]);
         }
@@ -85,4 +89,4 @@ function printMembers(obj, path) {
 }
 
 console.log("\nAll object members:");
-printMembers(nestedObj, []);
+printObjectMembers(nestedObj, []);
