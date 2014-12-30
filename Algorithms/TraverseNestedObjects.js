@@ -5,6 +5,25 @@
  *
  */
 
+var nestedObj = {
+//    f : function() {
+//      console.log("I am function!");
+//    },
+//    location : ["India", "US"],
+    name : {
+        firstName : 'Ricky',
+        lastName : "Rathore",
+        parents : {
+            father : "Joe",
+            mother : "Emmy"
+        }
+    },
+    age : 29,
+    city : 'San Jose',
+    state : 'CA',
+    country : 'US'
+};
+
 function printMembers(obj, path) {
 
     if(obj === undefined) {
