@@ -4,6 +4,8 @@
  * Created by prrathore on 12/23/14.
  */
 
+'use strict';
+
 var a = 10;
 console.log("typeof a: " + typeof a); //number
 
