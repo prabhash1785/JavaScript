@@ -26,6 +26,14 @@ var nestedObj = {
     country : 'US'
 };
 
+//this is a list of objects which will store keys and value of all object attributes
+var objectMap = [
+    {
+        key : '',
+        value : ''
+    }
+];
+
 function printObjectMembers(obj, path) {
 
     if(obj === undefined) {
@@ -70,14 +78,25 @@ function printObjectMembers(obj, path) {
 
         }
 
+        var fullyQualifiedName;
+
         //create qualified names from elements stored in path array
         if(path.length > 0) {
             var objectPath = path[0];
             for(var p = 1; p < path.length; p++) {
                 objectPath += '.' + path[p];
             }
-            console.log("Qualified Path of element is: " + objectPath);
+
+            //console.log("Qualified Path of element is: " + objectPath);
+
+            if(obj[x] !== 'object') {
+                //console.log("Qualified Path of element is: " + objectPath);
+                fullyQualifiedName = objectPath + '.' + x;
+                console.log("Fully Qualified Path of element is: " + fullyQualifiedName);
+            }
         }
+
+
 
         //print the element if it's not an object
         if(typeof obj[x] !== 'object') {
