@@ -1,5 +1,5 @@
 /**
- * This algorithm with traverse an n-level nested object and print all the member elements.
+ * This algorithm with traverse an n-level nested object and print all the member elements using recursion.
  *
  * Created by prrathore on 12/30/14.
  *
@@ -58,7 +58,6 @@ function printObjectMembers(obj, path) {
         }
 
         var dataType = typeof obj[x];
-        //console.log("Data type of object: " + dataType);
 
         if(dataType === 'object') {
             console.log("Object type encountered!!");
@@ -90,10 +89,7 @@ function printObjectMembers(obj, path) {
                 objectPath += '.' + path[p];
             }
 
-            //console.log("Qualified Path of element is: " + objectPath);
-
             if(obj[x] !== 'object') {
-                //console.log("Qualified Path of element is: " + objectPath);
                 fullyQualifiedName = objectPath + '.' + x;
                 console.log("Fully Qualified Path of element is: " + fullyQualifiedName);
             }
