@@ -16,7 +16,10 @@ var nestedObj = {
         firstName : 'Ricky',
         lastName : "Rathore",
         parents : {
-            father : "Joe",
+            father : {
+              a : 'a',
+              b : 'b'
+            },
             mother : "Emmy"
         }
     },
@@ -108,20 +111,4 @@ function printObjectMembers(obj, path) {
 }
 
 console.log("\nAll object members:");
-//printObjectMembers(nestedObj, []);
-
-//check what happens when an object doesn't have an attribute and you do method chaining on that
-var b = {
-    age : 29,
-    city : 'San Jose'
-};
-
-if(b.name !== undefined) {
-    if(nestedObj.name.firstName === b.name.firstName) {
-        console.log("TRUE");
-    } else {
-        console.log("FALSE");
-    }
-} else {
-    console.log("b.name is undefined");
-}
+printObjectMembers(nestedObj, []);
