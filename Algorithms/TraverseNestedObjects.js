@@ -82,6 +82,8 @@ function printObjectMembers(obj, path) {
 
         var fullyQualifiedName;
 
+        var tempObj = {}; //temporary object to store key-value object key value pairs for pushing it to final array
+
         //create qualified names from elements stored in path array
         if(path.length > 0) {
             var objectPath = path[0];
@@ -92,6 +94,7 @@ function printObjectMembers(obj, path) {
             if(obj[x] !== 'object') {
                 fullyQualifiedName = objectPath + '.' + x;
                 console.log("Fully Qualified Path of element is: " + fullyQualifiedName);
+                tempObj.key = fullyQualifiedName;
             }
         }
 
@@ -100,6 +103,13 @@ function printObjectMembers(obj, path) {
         //print the element if it's not an object
         if(typeof obj[x] !== 'object') {
             console.log(x + " => " + obj[x]);
+            tempObj.value = obj[x];
+
+            if(tempObj.key === undefined) {
+                tempObj.key = x;
+            }
+
+            objectMap.push(tempObj); //push tempObj to array for final response
         }
 
     }
@@ -108,3 +118,8 @@ function printObjectMembers(obj, path) {
 
 console.log("\nAll object members:");
 printObjectMembers(nestedObj, []);
+
+console.log("\n\n\====== Final list of Object Key-Value pairs:");
+for(var i = 0; i < objectMap.length; i++) {
+    console.log(objectMap[i].key + " :: " + objectMap[i].value);
+}
