@@ -110,6 +110,7 @@ function printObjectMembers(obj, path) {
             }
 
             objectMap.push(tempObj); //push tempObj to array for final response
+
         }
 
     }
