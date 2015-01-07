@@ -35,7 +35,8 @@ var objectMap = [];
 function printObjectMembers(obj, path) {
 
     if(obj === undefined) {
-        console.log("Undefined object encountered!");objectMap.push(tempObj); //push tempObj to array for final response
+        console.log("Undefined object encountered!");
+        //objectMap.push(tempObj); //push tempObj to array for final response
         return;
     }
 
