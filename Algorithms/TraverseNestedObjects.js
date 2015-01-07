@@ -1,5 +1,5 @@
 /**
- * This algorithm with traverse an n-level nested object and print all the member elements using recursion.
+ * This algorithm will traverse an n-level nested object and print all the member elements using recursion.
  *
  * Created by prrathore on 12/30/14.
  *
@@ -32,7 +32,7 @@ var nestedObj = {
 //this is a list of objects which will store keys and value of all object attributes
 var objectMap = [];
 
-function printObjectMembers(obj, path) {
+var printObjectMembers = function(obj, path) {
 
     if(obj === undefined) {
         console.log("Undefined object encountered!");objectMap.push(tempObj); //push tempObj to array for final response
@@ -119,3 +119,5 @@ console.log("\n\n\====== Final list of Object Key-Value pairs:");
 for(var i = 0; i < objectMap.length; i++) {
     console.log(objectMap[i].key + " :: " + objectMap[i].value);
 }
+
+module.exports = printObjectMembers;
