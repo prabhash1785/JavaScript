@@ -24,7 +24,7 @@ var nestedObj1 = {
 
 var nestedObj2 = {
     name : {
-        firstName : 'Amber',
+        firstName : 'Ricky',
         lastName : "Green-Rathore",
         parents : {
             father : {
@@ -40,8 +40,23 @@ var nestedObj2 = {
     country : 'US'
 }
 
-//this is a list of objects which will store keys and value of all object attributes
-var objectMap = [];
+var nestedObj3 = {
+    name : {
+        firstName : 'Ricky',
+        lastName : "Rathore",
+        parents : {
+            father : {
+                a : 'a',
+                b : 'b'
+            },
+            mother : "Emmy"
+        }
+    },
+    age : 29,
+    city : 'San Jose',
+    state : 'CA',
+    country : 'US'
+}
 
 function flattenObjectHelper(obj, path, objectMap) {
 
@@ -131,16 +146,98 @@ function flattenObject(sourceObj, flattenArray) {
 }
 
 console.log("\nAll object members:");
-var list = flattenObject(nestedObj1, []);
+var list1 = flattenObject(nestedObj1, []);
 
 console.log("\n\n\====== First set of Object Key-Value pairs:");
-for(var i = 0; i < list.length; i++) {
-    console.log(list[i].key + " :: " + list[i].value);
+for(var i = 0; i < list1.length; i++) {
+    console.log(list1[i].key + " :: " + list1[i].value);
 }
 
-var list2 = flattenObject(nestedObj2, []);
+var list2 = flattenObject(nestedObj3, []);
 
 console.log("\n\n\====== Second set of Object Key-Value pairs:");
 for(var i = 0; i < list2.length; i++) {
     console.log(list2[i].key + " :: " + list2[i].value);
+}
+
+//function to compare flattened objects
+function compareFlattenedArray(list1, list2) {
+    if(list1 === undefined) {
+        throw "Can't proceed comparison with undefined objects";
+    }
+
+    if(list2 === undefined) {
+        throw "Can't proceed comparison with undefined objects";
+    }
+
+    var flag = false;
+
+    var keyList = [];
+    var valueList = [];
+
+    //explode the object from list2 and store them in 2 separate arrays.
+    // one containing key and other containing value.
+    // this is done to do easy comparsion of list1 to list2 objects.
+    for(var x in list2) {
+        keyList.push(list2[x].key);
+        valueList.push(list2[x].value);
+    }
+
+    var keyFound = false;
+
+    for(var m in list1) {
+
+        keyFound = false;
+
+        console.log("list1[m]: " + list1[m] + " ::: " + list1[m].key + " = " + list1[m].value);
+        console.log("list2[m]: " + list2[m] + " ::: " + list2[m].key + " = " + list2[m].value);
+
+        for(var i = 0; i < keyList.length; i++) {
+            if(list1[m].key === keyList[i]) {
+                console.log("key matched... " + list1[m].key);
+
+                if(list1[m].value === valueList[i]) {
+                    console.log("Value matched... " + list1[m].value);
+                    keyFound = true;
+                }
+
+
+            }
+
+            if(keyFound) {
+                break;
+            }
+
+        }
+
+        if(!keyFound) {
+            break;
+        }
+
+
+
+//        if(list2[m] === undefined) {
+//            console.log("Property missing in second object, violate rules!!");
+//            flag = false;
+//            break; //specified property not present in the request, break out of this for loop
+//        }
+//
+//        if(list1[m] !== list2[m]) {
+//            console.log("Request property value don't match Rule property value!!");
+//            flag = false;
+//            break;
+//        }
+
+    }
+
+    return keyFound;
+
+}
+
+var equalityCheck = compareFlattenedArray(list1, list2);
+
+if(equalityCheck) {
+    console.log("Objects are Deep Equal!!");
+} else {
+    console.log("Objects are not Deep Equal!!");
 }
