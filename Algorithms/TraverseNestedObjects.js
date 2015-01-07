@@ -32,7 +32,7 @@ var nestedObj = {
 //this is a list of objects which will store keys and value of all object attributes
 var objectMap = [];
 
-var printObjectMembers = function(obj, path) {
+function printObjectMembers(obj, path) {
 
     if(obj === undefined) {
         console.log("Undefined object encountered!");objectMap.push(tempObj); //push tempObj to array for final response
@@ -119,5 +119,3 @@ console.log("\n\n\====== Final list of Object Key-Value pairs:");
 for(var i = 0; i < objectMap.length; i++) {
     console.log(objectMap[i].key + " :: " + objectMap[i].value);
 }
-
-module.exports = printObjectMembers;

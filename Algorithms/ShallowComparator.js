@@ -40,7 +40,7 @@ var obj3 = obj1; //now their reference is going to be same
 var result3 = obj3 === obj1;
 console.log("obj3 === obj1 => " + result3);
 
-// Function for deep comparison of nested objects
+//Function for shallow comparison of nested objects
 (function deepComparator() {
 
     if(obj1 === undefined || obj2 === undefined) {
@@ -61,9 +61,9 @@ console.log("obj3 === obj1 => " + result3);
     }
 
     if(flag) {
-        console.log("Obj1 is deep equal to Obj2");
+        console.log("Obj1 is shallow equal to Obj2");
     } else {
-        console.log("Obj1 is not deep equal to Obj2");
+        console.log("Obj1 is not shallow equal to Obj2");
     }
 
 
