@@ -24,14 +24,14 @@ var nestedObj1 = {
 
 var nestedObj2 = {
     name : {
-        firstName : 'Ricky',
-        lastName : "Rathore",
+        firstName : 'Amber',
+        lastName : "Green-Rathore",
         parents : {
             father : {
                 a : 'a',
                 b : 'b'
             },
-            mother : "Emmy"
+            mother : "Barb"
         }
     },
     age : 29,
@@ -43,10 +43,11 @@ var nestedObj2 = {
 //this is a list of objects which will store keys and value of all object attributes
 var objectMap = [];
 
-function flattenObject(obj, path) {
+function flattenObjectHelper(obj, path, objectMap) {
 
     if(obj === undefined) {
-        console.log("Undefined object encountered!");objectMap.push(tempObj); //push tempObj to array for final response
+        console.log("Undefined object encountered!");
+        //objectMap.push(tempObj); //push tempObj to array for final response
         return;
     }
 
@@ -69,7 +70,7 @@ function flattenObject(obj, path) {
             console.log("Object type encountered!!");
 
             path.push(x);
-            flattenObject(obj[x], path); //recursive function call for nested objects
+            objectMap = flattenObjectHelper(obj[x], path, objectMap); //recursive function call for nested objects
 
             //pop last path element from array if there are no embedded objects
             var hasEmbeddedObject = false;
@@ -121,12 +122,25 @@ function flattenObject(obj, path) {
 
     }
 
+    return objectMap;
+
+}
+
+function flattenObject(sourceObj, flattenArray) {
+    return flattenObjectHelper(sourceObj, [], flattenArray);
 }
 
 console.log("\nAll object members:");
-flattenObject(nestedObj1, []);
+var list = flattenObject(nestedObj1, []);
 
-console.log("\n\n\====== Final list of Object Key-Value pairs:");
-for(var i = 0; i < objectMap.length; i++) {
-    console.log(objectMap[i].key + " :: " + objectMap[i].value);
+console.log("\n\n\====== First set of Object Key-Value pairs:");
+for(var i = 0; i < list.length; i++) {
+    console.log(list[i].key + " :: " + list[i].value);
+}
+
+var list2 = flattenObject(nestedObj2, []);
+
+console.log("\n\n\====== Second set of Object Key-Value pairs:");
+for(var i = 0; i < list2.length; i++) {
+    console.log(list2[i].key + " :: " + list2[i].value);
 }
