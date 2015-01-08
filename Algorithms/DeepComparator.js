@@ -59,11 +59,30 @@ var nestedObj3 = {
     country : 'US'
 }
 
+/**
+ * This function will accept a n-level nested object as source and then return the flattened object as an array.
+ *
+ * @param sourceObj
+ * @param flattenArray
+ * @returns flattendObject
+ */
+function flattenObject(sourceObj, flattenArray) {
+    return flattenObjectHelper(sourceObj, [], flattenArray);
+}
+
+/**
+ * This is the helper function which is called recursively to find all the nested elements in an object and the object in the form of
+ * flattened object.
+ *
+ * @param obj
+ * @param path
+ * @param objectMap
+ * @returns flattened object
+ */
 function flattenObjectHelper(obj, path, objectMap) {
 
     if(obj === undefined) {
         console.log("Undefined object encountered!");
-        //objectMap.push(tempObj); //push tempObj to array for final response
         return;
     }
 
@@ -156,7 +175,13 @@ for(var i = 0; i < list2.length; i++) {
     console.log(list2[i].key + " :: " + list2[i].value);
 }
 
-//function to compare flattened objects
+/**
+ * This is used to deep compare two flattened objects and return boolean based on comparison result.
+ *
+ * @param list1
+ * @param list2
+ * @returns {boolean}
+ */
 function compareFlattenedArray(list1, list2) {
     if(list1 === undefined) {
         throw "Can't proceed comparison with undefined objects";
@@ -216,8 +241,4 @@ if(equalityCheck) {
     console.log("Objects are Deep Equal!!");
 } else {
     console.log("Objects are not Deep Equal!!");
-}
-
-function flattenObject(sourceObj, flattenArray) {
-    return flattenObjectHelper(sourceObj, [], flattenArray);
 }
