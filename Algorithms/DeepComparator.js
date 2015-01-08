@@ -1,63 +1,10 @@
 /**
- * This function will be used to deep comparison of n-level nested objects
+ * This algorithm will be used to deep comparison of n-level nested objects.
+ *
+ * To test or use these APIs, run DeepComparatorClient.js file.
  *
  * Created by prrathore on 1/7/15.
  */
-
-//code to test deep equality of objects using above functions
-var nestedObj1 = {
-    name : {
-        firstName : 'Ricky',
-        lastName : "Rathore",
-        parents : {
-            father : {
-                a : 'a',
-                b : 'b'
-            },
-            mother : "Emmy"
-        }
-    },
-    age : 29,
-    city : 'San Jose',
-    state : 'CA',
-    country : 'US'
-}
-
-var nestedObj2 = {
-    name : {
-        firstName : 'Ricky',
-        lastName : "Green-Rathore",
-        parents : {
-            father : {
-                a : 'a',
-                b : 'b'
-            },
-            mother : "Barb"
-        }
-    },
-    age : 29,
-    city : 'San Jose',
-    state : 'CA',
-    country : 'US'
-}
-
-var nestedObj3 = {
-    name : {
-        firstName : 'Ricky',
-        lastName : "Rathore",
-        parents : {
-            father : {
-                a : 'a',
-                b : 'b'
-            },
-            mother : "Emmy"
-        }
-    },
-    age : 29,
-    city : 'San Jose',
-    state : 'CA',
-    country : 'US'
-}
 
 /**
  * This function will accept a n-level nested object as source and then return the flattened object as an array.
@@ -66,7 +13,7 @@ var nestedObj3 = {
  * @param flattenArray
  * @returns flattendObject
  */
-function flattenObject(sourceObj, flattenArray) {
+var flattenObject = function(sourceObj, flattenArray) {
     return flattenObjectHelper(sourceObj, [], flattenArray);
 }
 
@@ -161,20 +108,6 @@ function flattenObjectHelper(obj, path, objectMap) {
 
 }
 
-var list1 = flattenObject(nestedObj1, []);
-
-console.log("\n\n\First Flattened object:");
-for(var i = 0; i < list1.length; i++) {
-    console.log(list1[i].key + " :: " + list1[i].value);
-}
-
-var list2 = flattenObject(nestedObj3, []);
-
-console.log("\n\n\Second flattened object:");
-for(var i = 0; i < list2.length; i++) {
-    console.log(list2[i].key + " :: " + list2[i].value);
-}
-
 /**
  * This is used to deep compare two flattened objects and return boolean based on comparison result.
  *
@@ -182,7 +115,7 @@ for(var i = 0; i < list2.length; i++) {
  * @param list2
  * @returns {boolean}
  */
-function compareFlattenedArray(list1, list2) {
+var compareFlattenedArray = function(list1, list2) {
     if(list1 === undefined) {
         throw "Can't proceed comparison with undefined objects";
     }
@@ -235,10 +168,6 @@ function compareFlattenedArray(list1, list2) {
 
 }
 
-var equalityCheck = compareFlattenedArray(list1, list2);
-
-if(equalityCheck) {
-    console.log("Objects are Deep Equal!!");
-} else {
-    console.log("Objects are not Deep Equal!!");
-}
+//export functions for public use
+exports.flattenObject = flattenObject;
+exports.compareFlattenedArray = compareFlattenedArray;
