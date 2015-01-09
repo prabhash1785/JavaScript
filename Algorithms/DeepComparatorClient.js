@@ -1,5 +1,5 @@
 /**
- * Sample clinet code to test Object Deep Comparator.
+ * Sample client code to test Object Deep Comparator.
  *
  * Created by prrathore on 1/7/15.
  */
