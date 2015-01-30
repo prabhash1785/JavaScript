@@ -11,7 +11,7 @@ var nestedObj = {
 //    f : function() {
 //      console.log("I am function!");
 //    },
-//    location : ["India", "US"],
+    location : ["India", "US"],
     name : {
         firstName : 'Ricky',
         lastName : "Rathore",
@@ -48,10 +48,19 @@ function printObjectMembers(obj, path) {
             throw exception;
         }
 
+        //if array encountered let's traverse the array as well
         if(Array.isArray(obj[x])) {
-            console.log("Array type encountered, exiting the loop");
-            break;
+            console.log("Array encountered, let's iterate over the array!!");
+            for(var i = 0; i < obj[x].length; i++) {
+                printObjectMembers(obj[x][i], path);
+            }
         }
+
+        //if Array encountered, exit the loop
+//        if(Array.isArray(obj[x])) {
+//            console.log("Array type encountered, exiting the loop");
+//            break;
+//        }
 
         var dataType = typeof obj[x];
 
