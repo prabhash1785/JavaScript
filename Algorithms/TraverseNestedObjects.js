@@ -8,9 +8,6 @@
 'use strict';
 
 var nestedObj = {
-//    f : function() {
-//      console.log("I am function!");
-//    },
     location : ["India", "US"],
     name : {
         firstName : 'Ricky',
@@ -32,37 +29,29 @@ var nestedObj = {
 //this is a list of objects which will store keys and value of all object attributes
 var objectMap = [];
 
+/**
+ * Recursively traverse a nested object and create a flattened structure and save it in a array.
+ *
+ * @param obj
+ * @param path
+ *
+ */
 function printObjectMembers(obj, path) {
 
     if(obj === undefined) {
         console.log("Undefined object encountered!");
-        //objectMap.push(tempObj); //push tempObj to array for final response
         return;
     }
 
     for(var x in obj) {
+
+        var dataType = typeof obj[x];
 
         if(dataType === 'function') {
             var exception = "these are data objects, functions not allowed in data objects";
             console.log(exception);
             throw exception;
         }
-
-        //if array encountered let's traverse the array as well
-        if(Array.isArray(obj[x])) {
-            console.log("Array encountered, let's iterate over the array!!");
-            for(var i = 0; i < obj[x].length; i++) {
-                printObjectMembers(obj[x][i], path);
-            }
-        }
-
-        //if Array encountered, exit the loop
-//        if(Array.isArray(obj[x])) {
-//            console.log("Array type encountered, exiting the loop");
-//            break;
-//        }
-
-        var dataType = typeof obj[x];
 
         if(dataType === 'object') {
             console.log("Object type encountered!!");
@@ -102,8 +91,6 @@ function printObjectMembers(obj, path) {
                 tempObj.key = fullyQualifiedName;
             }
         }
-
-
 
         //print the element if it's not an object
         if(typeof obj[x] !== 'object') {
