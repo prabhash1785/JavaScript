@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <pre>
+        <script>
+            //function to print values
+            function log(arg) {
+                document.writeln(arg);
+            }
+
+            function identity(x) {
+                return x;
+            }
+
+            //log(identity(3)); //invoke identity function
+
+            function add(a, b) {
+                return (a + b);
+            }
+
+            function sub(a, b) {
+                return (a - b);
+            }
+
+            function mul(a, b) {
+                return (a * b);
+            }
+
+            // invoke add, sub and mul functions
+            //log(add(3, 4));
+            //log(sub(3, 4));
+            //log(mul(3, 4));
+
+
+            function identityf(arg) {
+                //return returnArg(arg);
+                return function() {
+                    return arg;
+                };
+            }
+
+            var three = identityf(3);
+
+            //log(three());
+
+            //function to add from two invocations addf(3)(4)
+            //function()
+            function addf(first) {
+                return function(second) {
+                  return first + second;
+                  };
+
+            }
+
+            //log(addf(3)(4));
+
+            function liftf(binary) {
+                return function(first) {
+                    return function(second) {
+                        return binary(first, second);
+                    }
+                }
+
+            }
+
+            var addf2 = liftf(add);
+            //log(addf2(3)(4));
+
+            //log(liftf(mul)(5)(6));
+
+            /**
+             * function curry takes a function and an arguement, returns a function that takes  a second arguemnet
+             *
+             * var add3 = curry(add, 3);
+             * add3(4) //7
+             * curry(mul, 5)(6) //30
+             */
+            function curry(fn1, arg1) {
+                return function(arg2) {
+                    return fn1(arg1, arg2);
+                }
+            }
+
+            var add3 = curry(add, 3);
+            //log(add3(4));
+            //log(curry(mul, 5)(6));
+
+            /**
+             * show 3 ways to create inc function
+             * var inc = ..;
+             * inc(5) //6
+             * inc(inc(5)) //7
+             */
+            var inc = addf(1); //first way
+            //log(inc(5)); //6
+
+            /**
+             *
+             * other ways of doing this:
+             * inc = liftf(add)(1);
+             * inc = curry(add, 1);
+             */
+
+            inc = liftf(add); //second way
+            //log(inc(1)(5));
+
+            inc = curry(add, 1); //third way
+            //log(inc(5));
+
+            //log(inc(inc(5))); //7
+
+            /**
+             * function twice takes a binary function and returns a unary function that passes it's arguements to the binary function twice
+             * add(11, 11) //22
+             * var doubl = twice(add)
+             * doubl(11) //22
+             *
+             */
+
+
+
+            function twice(binary) {
+                return function(a) {
+                    return binary(a, a)
+
+                }
+            }
+
+            var doubl = twice(add);
+            var square = twice(mul);
+            //log(doubl(11));
+            //log(square(11));
+
+            /**
+             * Write reverse function which reverses the arguements of a binary function
+             *
+             * var bus = reverse(sub);
+             * bus(3, 2) //-1
+             */
+
+            function reverse(binary) {
+                return function(arg1, arg2) {
+                    return binary(arg2, arg1);
+                }
+            }
+
+            var bus = reverse(sub);
+            //log(bus(3, 2)); // -1
+
+            /**
+             * Write a function composeu that takes two unary functions and retrun a unary function that calls them both.
+             *
+             * composeu(doub1, square)(5) //100
+             *
+             */
+            function composeu(unary1, unary2) {
+                return function(arg1) {
+                    /*var result = unary1(arg1); //works
+                    return unary2(result);*/
+                    return unary2(unary1(arg1)); //works
+                }
+            }
+
+            //log(composeu(doubl, square)(5)); //100
+
+            /**
+             * function composeb
+             * composeb(add, mul)(2, 3, 7) //35
+             *
+             */
+            function composeb(fn1, fn2) {
+                return function(a, b, c) {
+                    return fn2(fn1(a, b), c);
+                }
+            }
+
+            //log(composeb(add, mul)(2, 3, 7)); //35
+
+        /**
+         * Write a once function that allows a binary function to be called only once.
+         *
+         * var add_once = once(add);
+         * add_once(3, 4) //7
+         * add_once(3, 5) //undefined
+         *
+         */
+
+        //one way
+        function once(binary) {
+            var flag = true;
+            return function(a, b) {
+                if(flag) {
+                    flag = false;
+                    return binary(a, b);
+                }
+
+                return undefined;
+            };
+        }
+
+        //second way
+        function once2(binary) {
+            var count = 0;
+            return function(a, b) {
+                if(count <= 0) {
+                    count++;
+                    return binary(a, b);
+                }
+            }
+        }
+
+        var add_once = once(add);
+        //log(add_once(3, 4)); //7
+        //log(add_once(3, 5));
+
+    /**
+     *
+     * Write function fromTo function that produces a generator that will produce values in a range.
+     * var index = fromTo(0, 3);
+     * index() //0
+     * index() //1
+     * index() //2
+     * index() //undefined
+     *
+     *
+     */
+     function fromTo(start, range) {
+
+        return function() {
+            if(start < range) {
+                return start++;
+            }
+        }
+
+
+    }
+
+    var index = fromTo(0, 3);
+    //log(index());
+    //log(index());
+    //log(index());
+    //log(index());
+
+    /**
+     *
+     * Write element function that takes an array and a generator and returns a generator that will produce elemnts from array.
+     * var elem = element(['a', 'b, 'c', 'd'], fromTo(1, 3));)
+     * ele() //'b'
+     * ele() //'c'
+     * ele //undefined
+     *
+     */
+
+     function element(arr, generator) {
+
+        if (generator === undefined) {
+            generator = fromTo(0, arr.length);
+        }
+
+
+        return function () {
+            var index = generator();
+            if (index !== undefined) {
+                return arr[index];
+            }
+
+        }
+
+    }
+
+    var ele = element(['a', 'b', 'c', 'd']);
+    //log(ele());
+    //log(ele());
+    //log(ele());
+    //log(ele());
+    //log(ele());
+
+
+    /**
+     * collect function
+     *
+     */
+     function collect(generator, array) {
+
+        var i = 0;
+        return function() {
+            var gen = generator();
+            array[i] = gen;
+            i++;
+            return gen;
+        }
+
+    }
+
+    var array = [],
+            col = collect(fromTo(5, 7), array);
+    //log(col());
+    //log(col());
+    //log(col());
+    //log(array);
+
+
+    /**
+     * filter function
+     *
+     */
+
+     function filter(generator, predicate) {
+
+        return function() {
+            var value;
+            do {
+                value = generator();
+            } while(value !== undefined && !predicate(value));
+            return value;
+
+        }
+
+    }
+
+    function filterRecursive(generator, predicate) {
+        return function recur() {
+             var value = gen();
+             if(value === undefined || predicate(value)) {
+                return value;
+             }
+             return recur();
+         };
+    }
+
+    var fill = filter(fromTo(0, 5),
+        function third(value) {
+            return (value % 3) === 0;
+        });
+
+    //log(fill());
+    //log(fill());
+    //log(fill());
+
+    /**
+     * Concatenate two generators
+     *
+     */
+
+    function concatenate(gen1, gen2) {
+
+        return function() {
+            var f1 = gen1();
+
+            if(f1 !== undefined) {
+                return f1;
+            }
+
+            var f2 = gen2();
+
+            if(f2 !== undefined) {
+                return f2;
+            }
+
+        }
+
+    }
+
+    var con = concatenate(fromTo(0, 3), fromTo(0, 2));
+//    log(con());
+//    log(con());
+//    log(con());
+//    log(con());
+//    log(con());
+//    log(con());
+
+
+    /**
+     * gensymf - generate unique symbols
+     *
+     *
+     */
+
+    function gensymf(str) {
+        var suffix = 1;
+        return function() {
+            suffix += 1; //increment suffix everytime
+            return (str + (suffix - 1));
+        }
+
+    }
+
+    var geng = gensymf('G'),
+        genh = gensymf('H');
+//    log(geng());
+//    log(genh());
+//    log(geng());
+//    log(genh());
+
+
+    /**
+     * gensymff
+     *
+     */
+     function gensymff(unary, seed) {
+
+        return function(prefix) {
+            var number = seed;
+            return function() {
+                number = unary(number);
+                return prefix + number;
+            }
+        }
+    }
+
+    var gensymf = gensymff(inc, 0),
+        geng = gensymf('G'),
+        genh = gensymf('H');
+
+//    log(geng());
+//    log(genh());
+//    log(geng());
+//    log(genh());
+
+
+    /**
+     *
+     * Fibonacci numbers
+     *
+     */
+    function fibonaccif(first, second) {
+        return function () {
+
+            var output = first;
+            var next = first + second;
+
+            first = second;
+            second = next;
+
+            return output;
+        }
+    }
+
+    var fib = fibonaccif(0, 1);
+
+//    log(fib());
+//    log(fib());
+//    log(fib());
+//    log(fib());
+//    log(fib());
+//    log(fib());
+//    log(fib());
+
+
+    /**
+     * Object with two functions
+     *
+     */
+     function counter(count) {
+        var obj = {
+            next : function() {
+                count += 1;
+                return count;
+            },
+            prev : function() {
+                count -= 1;
+                return count;
+            }
+        };
+
+        return obj;
+
+    }
+
+    var object = counter(10),
+            next = object.next,
+            prev = object.prev;
+
+//    log(next());
+//    log(prev());
+//    log(prev());
+//    log(next());
+
+    /**
+     * Revocable function
+     *
+     *
+     */
+     function revocable(unary) {
+
+        /*var object = {
+            flag : true,
+            invoke : function(arg1) {
+                if(flag === true) {
+                    return unary(arg1);
+                } else {
+                    return undefined;
+                }
+            },
+            revoke : function() {
+                this.flag = false;
+            }
+        };
+
+        return object;*/
+
+
+        return {
+            invoke : function(arg) {
+                if(unary !== undefined) {
+                    return unary(arg);
+                }
+            },
+            revoke : function() {
+                unary = undefined;
+            }
+        };
+
+    }
+
+    var rev = revocable(identity),
+        invoke = rev.invoke;
+
+//    log(invoke(7));
+//    rev.revoke();
+//    log(invoke(8));
+
+
+    /**
+     *
+     */
+     function m(value, source) {
+        return {
+            value : value,
+            source : typeof source === 'string'
+                ? source
+                : String(value)
+
+        };
+    }
+
+    function addm(m, n) {
+        return {
+            value : m.value + n.value,
+            source : "(" + m.value + "+" + n.value + ")"
+        };
+
+       /* return m(
+                a.value + b.value,
+                "(" + m.value + "+" + n.value + ")"
+        )*/
+
+    }
+
+//    log(JSON.stringify(addm(m(3), m(4))));
+//    log(JSON.stringify(addm(m(3), m(Math.PI, "pi"))));
+
+
+    function liftm(binary, str) {
+        return function(m, n) {
+            return {
+                value : binary(m.value, n.value),
+                source : "(" + m.value + str + n.value + ")"
+            };
+        }
+    }
+
+    var addm2 = liftm(add, "+");
+//    log(JSON.stringify(addm2(m(3), m(4))));
+//    log(JSON.stringify(liftm(mul, "*")(m(3),m(4))));
+
+
+    /**
+     *
+     * Write a function addg that adds from many invocations, until it sees an empty invocation.
+     *
+     * addg() //undefined
+     * addg(2)() //2
+     * addg(2)(7)() //9
+     * addg(3)(4)(0)() //7
+     * addg(1)(2)(4)(8)() //15
+     *
+     *
+     */
+     function addg(arg1) {
+        if(arg1 === undefined) {
+            return undefined;
+        } else {
+            return function repeat(arg2) {
+                if(arg2 === undefined) {
+                    return arg1;
+                } else {
+                    arg1 += arg2;
+                    return repeat;
+                }
+            }
+        }
+
+
+
+    }
+
+
+//     log(addg());
+//     log(addg(2)());
+//     log(addg(2)(7)());
+//     log(addg(3)(4)(0)());
+//     log(addg(1)(2)(4)(8)());
+
+
+    /**
+     *  liftg function
+     *
+     */
+     function liftg(binary) {
+
+        return function(arg1) {
+            if(arg1 === undefined) {
+                return arg1;
+            } else {
+                return function recur(arg2) {
+                    if(arg2 === undefined) {
+                        return arg1;
+                    } else {
+                        arg1 = binary(arg1, arg2);
+                        return recur;
+                    }
+                }
+            }
+        }
+
+    }
+
+
+//    log(liftg(mul)());        // undefined
+//    log(liftg(mul)(3)());           // 3
+//    log(liftg(mul)(3)(4)(0)());     // 0
+//    log(liftg(mul)(1)(2)(4)(8)());  // 64
+
+
+     /*function liftg(binary) {
+
+         return function more(first) {
+             function recur(next) {
+                 if(next === undefined) {
+                     return first;
+                 }
+                 first = binary(first, next);
+                 return recur;
+             }
+
+             if(first !== undefined) {
+                 return recur;
+             }
+
+         }
+
+
+     }*/
+
+
+//    log(liftg(mul)());        // undefined
+//    log(liftg(mul)(3)());           // 3
+//    log(liftg(mul)(3)(4)(0)());     // 0
+//    log(liftg(mul)(1)(2)(4)(8)());  // 64
+
+    /**
+     *
+     * arrayg
+     *
+     *
+     */
+     function arrayg(arg1) {
+        var output = [];
+        if(arg1 === undefined) {
+            return output;
+        } else {
+
+            output.push(arg1);
+            return function recur(arg2) {
+
+                if(arg2 === undefined) {
+
+                    return output;
+                } else {
+                    output.push(arg2);
+                    return recur;
+                }
+            }
+        }
+    }
+
+//    log(arrayg());
+//    log(arrayg(3)());
+//    log(arrayg(3)(4)(5)());
+
+
+    /**
+     *
+     * continuize function with callback
+     *
+     *
+     */
+     function continuize(unary) {
+        return function(callback, arg) {
+            return callback(unary(arg));
+        }
+    }
+
+    var sqrtc = continuize(Math.sqrt);
+    sqrtc(alert, 81);
+
+        </script>
+    </pre>
+
+</body>
+</html>
