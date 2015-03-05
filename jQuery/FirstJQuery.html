@@ -13,6 +13,11 @@
 
 <p>Hide me!!</p>
 
+<div id="jQuery" padding="10">
+    <h1>JQuery Training</h1>
+    <section>This is a jQuery Training</section>
+</div>
+
 <input type="text">
 
 
@@ -30,6 +35,10 @@
     //change background color
     $("input").blur(function(){
         $(this).css("background-color", "red");
+    });
+
+    $('#jQuery').click(function() {
+       $(this).hide();
     });
 
 </script>
