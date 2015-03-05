@@ -18,7 +18,13 @@
     <section>This is a jQuery Training</section>
 </div>
 
+<div id="fade">
+    <p>Fade me!!</p>
+</div>
+
 <input type="text">
+
+<button style="display:block">Click to fade content</button>
 
 
 <script src="js/jquery.min.js"></script>
@@ -39,6 +45,13 @@
 
     $('#jQuery').click(function() {
        $(this).hide();
+    });
+
+    //fade elements
+    $('button').click(function() {
+       $('#fade').fadeOut();
+        $('#fade').fadeIn();
+
     });
 
 </script>
