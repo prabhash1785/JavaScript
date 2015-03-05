@@ -13,6 +13,8 @@
 
 <p>Hide me!!</p>
 
+<input type="text">
+
 
 <script src="js/jquery.min.js"></script>
 
@@ -23,6 +25,11 @@
     //hide text in p tag
     $('p').click(function() {
        $(this).hide();
+    });
+
+    //change background color
+    $("input").blur(function(){
+        $(this).css("background-color", "red");
     });
 
 </script>
