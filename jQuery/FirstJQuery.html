@@ -11,12 +11,19 @@
     <h1>This is a sample web page with jQuery code.</h1>
 </div>
 
+<p>Hide me!!</p>
+
 
 <script src="js/jquery.min.js"></script>
 
 <script>
     //change title
     $('title').text("Hello jQuery");
+
+    //hide text in p tag
+    $('p').click(function() {
+       $(this).hide();
+    });
 
 </script>
 
