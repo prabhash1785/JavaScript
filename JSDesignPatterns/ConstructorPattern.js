@@ -1,6 +1,8 @@
 /**
  *
  * Constructors with prototypes allow sharing of common member instances among different objects.
+ * It's a good Design Pattern to define functions which needs to be shared amoung all objects in the Prototype object, this
+ * prevents redefining the function in all separate instances.
  *
  * Created by Prabhash Rathore on 12/9/14.
  */
