@@ -1,6 +1,8 @@
 /**
- * Module pattern is helps implement Object Oriented concepts like encapsulation. It allows you to create private members
- * which are not visible to external world and also expose members by making them public.
+ * The Module pattern encapsulates "privacy", state and organization using closures. It provides a way of wrapping a
+ * mix of public and private methods and variables, protecting pieces from leaking into the global scope and accidentally
+ * colliding with another developer's interface. With this pattern, only a public API is returned, keeping everything else
+ * within the closure private.
  *
  * Created by prrathore on 3/12/15.
  */
