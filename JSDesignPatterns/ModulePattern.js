@@ -26,3 +26,6 @@ var myModule = (function(color) {
 myModule.printColor();
 myModule.resetColor();
 myModule.printColor();
+
+//access private member, will print undefined as it's not visible
+console.log("Private data member color: " + myModule.color); //undefined
