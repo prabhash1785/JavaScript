@@ -7,24 +7,114 @@
         #first {
             color: red;
             font-family: 'Lobster', cursive;
+            background-color: yellow;
+            display: block;
+            opacity: 0.5;
         }
 
         .second {
             color: blue;
-            font-family: 'Anonymous Pro';
+            font-family: 'Anonymous Pro', ;
         }
 
         .third {
             color: orange;
         }
+        body {
+            background-image: url("PayPal-Logo-Vector-Image.png");
+        }
+        .alphaList {
+            list-style-type: lower-alpha;
+        }
+        #animation {
+            position: relative;
+            -webkit-animation: mymove 5s infinite;
+        }
+        @-webkit-keyframes mymove {
+            from {left: 0px;}
+            to {left: 200px;}
+        }
+        #navigation {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: cyan;
+        }
+
+        #navigation li {
+            display: inline;
+            font-weight: bold;
+            color: blue;
+        }
+        #subMenu {
+            display: none;
+        }
+        #subMenu li {
+            display: block;
+        }
+
     </style>
     <title>Basic Web Page</title>
 </head>
 <body>
 
+<div>
+    <ol id="navigation">
+        <li><a href="#" onclick="showSubMenu()">Chicago</a></li>
+        <li>San Jose</li>
+        <li>San Francisco</li>
+        <li>New York</li>
+    </ol>
+</div>
+
+<div id="subMenu">
+    <ol>
+        <li>Arlington Heights</li>
+        <li>Mount Prospect</li>
+        <li>Schaumburg</li>
+    </ol>
+</div>
+
 <p id="first">First Paragraph</p>
-<p class="second">Second Paragraph</p>
-<p class="third">Third Paragraph</p>
+
+<div id="panel">
+    <p class="second">Second Paragraph</p>
+    <p class="third">Third Paragraph</p>
+</div>
+
+<div class="nestedElements">
+    <ol>
+        <li>Groceries</li>
+        <li>Walk Dog</li>
+        <li>Take Web Div class</li>
+        <li>Relax
+            <ol class="alphaList">
+                <li>Yoga</li>
+                <li>Massage</li>
+                <li>Watch Movies</li>
+            </ol>
+        </li>
+        <li>Repeat</li>
+    </ol>l>
+</div>
+
+<div id="animation">
+    This is animation.
+</div>
+
+<script src="../js/jquery.min.js"></script>
+
+<script>
+    $('#first').click(function() {
+        $('#panel').toggle();
+    });
+
+    function showSubMenu() {
+        var chicagoSubMenu = document.getElementById('subMenu');
+        chicagoSubMenu.style.display = 'block';
+    }
+
+</script>
 
 </body>
 </html>
