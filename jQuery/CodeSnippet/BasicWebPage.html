@@ -20,9 +20,9 @@
         .third {
             color: orange;
         }
-        body {
-            background-image: url("PayPal-Logo-Vector-Image.png");
-        }
+        /*body {*/
+            /*background-image: url("PayPal-Logo-Vector-Image.png");*/
+        /*}*/
         .alphaList {
             list-style-type: lower-alpha;
         }
@@ -46,10 +46,10 @@
             font-weight: bold;
             color: blue;
         }
-        #subMenu {
+        .subMenu {
             display: none;
         }
-        #subMenu li {
+       .subMenu li {
             display: block;
         }
 
@@ -60,18 +60,26 @@
 
 <div>
     <ol id="navigation">
-        <li><a href="#" onclick="showSubMenu()">Chicago</a></li>
-        <li>San Jose</li>
+        <li><a href="#" onclick="showSubMenu('chicagoSubMenu')">Chicago</a></li>
+        <li id="sanJose"><a href="#" onclick="showSubMenu('sjSubMenu')">San Jose</a></li>
         <li>San Francisco</li>
         <li>New York</li>
     </ol>
 </div>
 
-<div id="subMenu">
+<div id="chicagoSubMenu" class="subMenu">
     <ol>
         <li>Arlington Heights</li>
         <li>Mount Prospect</li>
         <li>Schaumburg</li>
+    </ol>
+</div>
+
+<div id="sjSubMenu" class="subMenu">
+    <ol>
+        <li>Blossom Valley</li>
+        <li>Sunnyvale</li>
+        <li>Mountain View</li>
     </ol>
 </div>
 
@@ -95,12 +103,19 @@
             </ol>
         </li>
         <li>Repeat</li>
-    </ol>l>
+    </ol>
 </div>
 
 <div id="animation">
     This is animation.
 </div>
+
+<table border="1">
+    <tr><td>Row with Index #0</td></tr>
+    <tr><td>Row with Index #1</td></tr>
+    <tr><td>Row with Index #2</td></tr>
+    <tr><td>Row with Index #3</td></tr>
+</table>
 
 <script src="../js/jquery.min.js"></script>
 
@@ -109,10 +124,20 @@
         $('#panel').toggle();
     });
 
-    function showSubMenu() {
-        var chicagoSubMenu = document.getElementById('subMenu');
-        chicagoSubMenu.style.display = 'block';
+    // javascript function to toggele sub-menu items
+    function showSubMenu(subMenu) {
+        var subMenu = document.getElementById(subMenu);
+        if(subMenu.style.display == 'block')
+            subMenu.style.display = 'none';
+        else
+            subMenu.style.display = 'block';
     }
+
+    $('sanJose').click(function() {
+       $("#sjSubMenu").toggle();
+    });
+
+    $( "tr:even" ).css( "background-color", "#bbf" );
 
 </script>
 
