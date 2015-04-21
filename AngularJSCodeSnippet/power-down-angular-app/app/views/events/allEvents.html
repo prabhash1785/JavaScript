@@ -1,0 +1,21 @@
+<div class="container">
+
+  <h1 class="mB15">
+  	<span class="icon-earth"></span>
+  	<span>All Events</span>
+  </h1>
+
+  <div class="form-horizontal searchContainer">
+    <div class="form-group">
+      <label class="col-sm-1 control-label">SEARCH</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="vm.searchModel" class="form-control"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="cardsWrap">
+    <event-card ng-repeat="event in vm.events | filter: vm.searchModel" event="event" class="cardsAnimate"></event-card>
+  </div>
+
+</div>

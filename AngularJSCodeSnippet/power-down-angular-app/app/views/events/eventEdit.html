@@ -1,0 +1,64 @@
+<div class="container">
+
+  <h1>
+  	<span class="icon-pencil2"></span>
+  	<span>Edit - {{ vm.eventModel.name }}</span>
+  </h1>
+
+  <div ng-if="activeUser && activeUser.id === vm.eventModel.organizer.id" class="subHeaderButtons">
+  	<a ng-href="/events/{{ vm.eventModel.uid }}" class="btn btn-secondary btn-sm">
+  		<span class="icon-arrow-left3"></span>
+  		<span>Event Summary</span>
+  	</a>
+  </div>
+
+  <div class="alert alert-warning" ng-show="!activeUser">Please login to edit your event.</div>
+  <!--<div ng-show="activeUser.id !== vm.eventModel.organizer.id" class="alert alert-warning">You do not have permission to edit this event.</div>-->
+
+  <div ng-show="activeUser && activeUser.id === vm.eventModel.organizer.id">
+    <h4 class="secondaryHeader">
+      <span class="secondaryHeaderInner">EVENT DETAILS</span>
+    </h4>
+
+    <form name="editEventForm" ng-submit="vm.editEvent()" novalidate="novalidate" class="form-horizontal">
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Event Name</label>
+        <div class="col-sm-7 col-md-5">
+          <input type="text" ng-model="vm.eventModel.name" name="eventName" placeholder="Event Name" autofocus="" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Type</label>
+        <div class="col-sm-7 col-md-5">
+          <input type="text" ng-model="vm.eventModel.type" name="eventType" placeholder="Event Type" class="form-control"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-9">
+          <textarea ng-model="vm.eventModel.description" name="eventDesc" placeholder="Event Description" style="height: 150px;" class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-3 col-sm-offset-2">
+          <button type="submit" class="btn btn-medium btn-primary">Update</button>
+        </div>
+      </div>
+
+    </form>
+
+    <h4 class="secondaryHeader mT30">
+      <div class="secondaryHeaderInner">EVENT ATTENDEES</div>
+    </h4>
+
+    <div ng-repeat="(userId, userName) in vm.eventModel.attendees" class="attendees">
+    	<span ng-click="vm.removeAttendee(userId)" class="removeIcon icon-minus-circle"></span>
+    	<span class="icon-user6"></span><span>{{ userName }}</span>
+    </div>
+
+  </div>
+</div>

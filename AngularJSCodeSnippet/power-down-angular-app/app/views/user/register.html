@@ -1,0 +1,56 @@
+<div class="container">
+
+  <h1>
+  	<span class="icon-clipboard4"></span>
+  	<span>Register</span>
+  </h1>
+
+  <form name="registerForm" ng-submit="vm.register()" novalidate="novalidate" class="form-horizontal">
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">
+      	<span>Username</span>
+      	<span class="requiredAsterix">*</span>
+      </label>
+      <div class="col-sm-8 col-md-6">
+        <input type="text" ng-model="vm.registerModel.userName" name="username" placeholder="Username" autofocus="" required="required" class="form-control"/>
+        <div ng-if="(registerForm.$submitted || registerForm.username.$touched) && registerForm.username.$error.required" class="formErrorMessage">Username is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">
+      	<span>Email</span>
+      	<span class="requiredAsterix">*</span>
+      </label>
+      <div class="col-sm-8 col-md-6">
+        <input type="email" ng-model="vm.registerModel.email" name="email" placeholder="Email" required="required" class="form-control"/>
+        <div ng-messages="registerForm.email.$error" ng-if="registerForm.$submitted || registerForm.email.$touched" class="formErrorMessage">
+          <div ng-message="required">Email address is required.</div>
+          <div ng-message="email">Email address is not valid.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">
+      	<span>Password</span>
+      	<span class="requiredAsterix">*</span>
+      </label>
+      <div class="col-sm-8 col-md-6">
+        <input type="password" ng-model="vm.registerModel.password" minlength="4" name="password" placeholder="Password" required="required" class="form-control"/>
+        <div ng-messages="registerForm.password.$error" ng-if="registerForm.$submitted || registerForm.password.$touched" class="formErrorMessage">
+          <div ng-message="required">Password is required.</div>
+          <div ng-message="minlength">Password must be at least 4 characters long.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-8 col-sm-offset-3">
+        <button type="submit" class="btn btn-medium btn-primary">Register</button>
+      </div>
+    </div>
+
+  </form>
+</div>

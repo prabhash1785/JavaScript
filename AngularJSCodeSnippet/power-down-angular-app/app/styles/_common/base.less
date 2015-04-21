@@ -1,0 +1,260 @@
+@import "vars";
+
+/*------------------------------------------------------------------*\
+    BODY SECTIONS
+\*------------------------------------------------------------------*/
+
+
+html, body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: @font-primary;
+	font-size: 14px;
+	line-height: 1.6em;
+	color: @text-primary;
+	background-color: #FFF;
+	overflow-x: hidden;
+}
+.mainView {
+	padding-bottom: 30px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (max-width: 991px) {
+
+}
+@media (max-width: 767px) {
+
+}
+
+
+
+
+/*------------------------------------------------------------------*\
+    GLOBAL LEVEL ELEMENTS
+\*------------------------------------------------------------------*/
+
+
+p {
+	margin: 0 0 15px;
+}
+img {
+	max-width: 100%;
+	width: auto\9;
+	height: auto;
+	vertical-align: middle;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+a {
+	color: #1F92E0;
+	text-decoration: none;
+}
+a:hover {
+	color: #1F92E0;
+	text-decoration: underline;
+	cursor: pointer;
+}
+input,
+button,
+select,
+textarea {
+	font-family: @font-primary;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: @font-secondary;
+	font-weight: 300;
+}
+h1 {
+	font-size: 22px;
+	margin: 30px 0 35px 0;
+	[class^="icon-"], [class*=" icon-"] {
+		color: @brand-primary;
+		margin-right: 10px;
+		line-height: 21px;
+	}
+	span {
+		vertical-align: middle;
+	}
+}
+h4 {
+	font-size: 16px;
+}
+
+
+
+
+
+/*------------------------------------------------------------------*\
+    SECONDARY / SUB HEADER
+\*------------------------------------------------------------------*/
+
+.secondaryHeader {
+	color: @white;
+	margin: 20px 0;
+}
+.secondaryHeaderInner {
+	display: inline-block;
+	background-color: @brand-secondary-light;
+	padding: 10px;
+	border-left: 3px solid @brand-secondary-dark;
+}
+.subHeaderButtons {
+	margin: -22px 0 35px 0;
+	.iconButton {
+		padding: 6px;
+		font-size: 15px;
+	}
+	.btn {
+		margin-right: 10px;
+	}
+}
+
+
+
+
+
+
+/*------------------------------------------------------------------*\
+    HELPER CLASSES
+\*------------------------------------------------------------------*/
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.cB {
+	clear: both;
+}
+.cL {
+	clear: left;
+}
+.clearFloat {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.mB15 {
+	margin-bottom: 15px !important;
+}
+.mT30 {
+	margin-top: 30px !important;
+}
+
+/* from angular-csp.css */
+/* not loaded by default with ng-csp */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide {
+	display: none !important;
+}
+ng\:form {
+	display: block;
+}
+
+
+
+
+/*------------------------------------------------------------------*\
+    ANIMATIONS
+\*------------------------------------------------------------------*/
+
+.cardsAnimate.ng-enter,
+.cardsAnimate.ng-leave {
+	-webkit-transition: all 0.6s ease-in-out;
+	-moz-transition: all 0.6s ease-in-out;
+	-ms-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+	position: relative;
+	display: block;
+}
+.cardsAnimate.ng-enter.ng-enter-active,
+.cardsAnimate.ng-leave {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+
+}
+.cardsAnimate.ng-leave.ng-leave-active,
+.cardsAnimate.ng-enter {
+	opacity: 0;
+	-webkit-transform: scale(0.64);
+	-ms-transform: scale(0.64);
+	transform: scale(0.64);
+}
+
+
+.animateFade.ng-hide-add,
+.animateFade.ng-hide-remove {
+	-webkit-transition: all linear 1s;
+	-moz-transition: all linear 1s;
+	-ms-transition: all linear 1s;
+	-o-transition: all linear 1s;
+	transition: all linear 1s;
+	display: block !important;
+}
+
+.animateFade.ng-hide-add.ng-hide-add-active,
+.animateFade.ng-hide-remove {
+	opacity: 0;
+}
+
+.animateFade.ng-hide-add,
+.animateFade.ng-hide-remove.ng-hide-remove-active {
+	opacity: 1;
+}
+
+
+
+
+/*------------------------------------------------------*\
+    ALERTS
+\*------------------------------------------------------*/
+
+.alert {
+	position: relative;
+	.border-radius(0);
+	border: 0px solid #000;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.alert-dismissable .close,
+.alert-dismissible .close {
+	position: absolute;
+	top: 17px;
+	right: 14px;
+	color: inherit;
+	line-height: 0.9
+}
+.alert-danger {
+	color: #FFF;
+	background-color: @error;
+}
+.alert-success {
+	color: #FFF;
+	background-color: @brand-secondary;
+}
+.alert-warning {
+	color: #000;
+	background-color: @warning;
+	font-weight: bold;
+}
+.alertContainer {
+	position: fixed;
+	top: 60px;
+	right: 20px;
+	padding: 0 10px;
+	z-index: 1000;
+	.alert {
+		margin: 0 0 10px 0;
+	}
+}

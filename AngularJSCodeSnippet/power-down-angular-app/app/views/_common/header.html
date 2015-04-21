@@ -1,0 +1,40 @@
+<header ng-controller="HeaderCtrl as vm">
+  <div class="navbar">
+    <div class="container">
+
+    	<a href="/" class="logo"><span>Power Down</span></a>
+    	<a ng-click="vm.togglePhoneNav()" class="toggleMobileNav visible-xs icon-menu6"></a>
+
+      <div class="rightSideHeader">
+        <nav class="hidden-xs">
+          <ul class="nav topnav">
+            <li ui-sref-active="active"><a ui-sref="allEvents" class="ease">All Events</a></li>
+            <li ui-sref-active="active"><a ui-sref="myEvents" class="ease">My Events</a></li>
+            <li ui-sref-active="active"><a ui-sref="createEvent" class="ease">Create Event</a></li>
+            <li ui-sref-active="active"><a ui-sref="settings" class="ease">Settings</a></li>
+            <li ui-sref-active="active" ng-hide="activeUser"><a ui-sref="login" class="ease secondaryNav">Login</a></li>
+            <li ui-sref-active="active" ng-hide="activeUser" class="last"><a ui-sref="register" class="ease secondaryNav">Register</a></li>
+            <li ng-show="activeUser" class="last"><a ng-click="vm.logout()" class="ease secondaryNav">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <nav class="visible-xs">
+        <ul class="nav nav-pills nav-stacked phoneNav">
+          <li ui-sref-active="active"><a ui-sref="allEvents">All Events</a></li>
+          <li ui-sref-active="active"><a ui-sref="myEvents">My Events</a></li>
+          <li ui-sref-active="active"><a ui-sref="createEvent">Create Event</a></li>
+          <li ui-sref-active="active"><a ui-sref="settings">Settings</a></li>
+          <li ui-sref-active="active" ng-hide="activeUser">
+          	<a ui-sref="login">Login</a>
+          </li>
+          <li ui-sref-active="active" ng-hide="activeUser">
+          	<a ui-sref="register">Register</a>
+          </li>
+          <li ng-show="activeUser"><a ng-click="logout()">Logout</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</header>

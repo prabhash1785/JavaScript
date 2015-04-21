@@ -1,0 +1,21 @@
+<div class="container">
+
+  <h1>
+  	<span class="icon-star3"></span>
+  	<span>My Events</span>
+  </h1>
+
+  <div ng-show="!activeUser" class="alert alert-warning">Please login to view your events.</div>
+
+  <div ng-show="activeUser">
+
+    <accordion-section open-by-default="false" title="EVENTS I'VE CREATED">
+      <event-card ng-repeat="event in vm.events | myCreatedEvents: activeUser.id" event="event" class="cardsAnimate"></event-card>
+    </accordion-section>
+
+    <accordion-section title="EVENTS I'VE JOINED">
+      <event-card ng-repeat="event in vm.events | joinedEvents: activeUser.id" event="event" class="cardsAnimate"></event-card>
+    </accordion-section>
+
+  </div>
+</div>

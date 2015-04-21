@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="powerDownApp">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="fragment" content="!">
+    <title>Power Down App</title>
+    <meta name="description" content="Power down, learn, and have fun.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+
+    <!-- build:css({.tmp,app}) styles/vendor.css-->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild-->
+
+    <!-- build:css({.tmp,app}) styles/main.css-->
+    <!-- SAILS-LINKER:CSS-->
+    <link rel="stylesheet" href="styles/_common/accordion.css">
+    <link rel="stylesheet" href="styles/_common/base.css">
+    <link rel="stylesheet" href="styles/_common/buttons.css">
+    <link rel="stylesheet" href="styles/_common/forms.css">
+    <link rel="stylesheet" href="styles/_common/header.css">
+    <link rel="stylesheet" href="styles/_common/icons.css">
+    <link rel="stylesheet" href="styles/_common/vars.css">
+    <link rel="stylesheet" href="styles/events/allEvents.css">
+    <link rel="stylesheet" href="styles/events/eventCard.css">
+    <link rel="stylesheet" href="styles/events/eventSummary.css">
+    <!-- SAILS-LINKER:CSS END-->
+    <!-- endbuild-->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,400,500|Source+Sans+Pro:300|Open+Sans">
+
+  </head>
+
+  <body>
+
+    <ng-include src="'views/_common/header.html'"></ng-include>
+
+    <div ui-view="" class="mainView"></div>
+
+    <div ng-controller="AlertsCtrl" class="alertContainer">
+      <alert ng-repeat="alert in alerts track by $index" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+
+    <!--[if lt IE 9]-->
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <!--[endif]-->
+
+    <!-- build:js({.tmp,app}) scripts/vendor.js-->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <!-- endbuild-->
+
+    <!-- build:js({.tmp,app}) scripts/appScripts.js-->
+    <!-- SAILS-LINKER:APPJS-->
+    <script src="scripts/_common/_app.js"></script>
+    <script src="scripts/_common/_router.js"></script>
+    <script src="scripts/_common/accordion.dctv.js"></script>
+    <script src="scripts/_common/alerts.ctrl.js"></script>
+    <script src="scripts/_common/config.js"></script>
+    <script src="scripts/_common/header.ctrl.js"></script>
+    <script src="scripts/_common/safeApply.run.js"></script>
+    <script src="scripts/events/allEvents.ctrl.js"></script>
+    <script src="scripts/events/createEvent.ctrl.js"></script>
+    <script src="scripts/events/eventCard.dctv.js"></script>
+    <script src="scripts/events/eventEdit.ctrl.js"></script>
+    <script src="scripts/events/eventSummary.ctrl.js"></script>
+    <script src="scripts/events/events.srvc.js"></script>
+    <script src="scripts/events/joinedEvents.filter.js"></script>
+    <script src="scripts/events/myCreatedEvents.filter.js"></script>
+    <script src="scripts/events/myEvents.ctrl.js"></script>
+    <script src="scripts/user/login.ctrl.js"></script>
+    <script src="scripts/user/register.ctrl.js"></script>
+    <script src="scripts/user/settings.ctrl.js"></script>
+    <script src="scripts/user/user.srvc.js"></script>
+    <!-- SAILS-LINKER:APPJS END-->
+    <!-- endbuild-->
+
+  </body>
+</html>

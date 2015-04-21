@@ -1,0 +1,29 @@
+@import "vars";
+
+/*------------------------------------------------------------------*\
+    ACCORDIAN
+\*------------------------------------------------------------------*/
+
+accordion-section {
+	display: block;
+	margin-bottom: 40px;
+}
+.secondaryHeaderInner {
+	span {
+		vertical-align: middle;
+	}
+	.toggleIcon {
+		margin-left: 10px;
+		&:hover {
+			color: @black;
+			cursor: pointer;
+		}
+	}
+}
+.contentSection {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}

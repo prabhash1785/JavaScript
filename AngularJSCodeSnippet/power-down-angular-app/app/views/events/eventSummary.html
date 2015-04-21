@@ -1,0 +1,55 @@
+<div class="container">
+
+  <h1>
+  	<span class="icon-flag5"></span>
+  	<span>{{ vm.event.name }}</span>
+  </h1>
+
+  <div ng-if="activeUser" class="subHeaderButtons clearFloat">
+  	<a ng-href="/events" class="btn btn-secondary btn-sm">
+  		<span class="icon-arrow-left3"></span>
+  		<span>All Events</span>
+  	</a>
+  	<a ng-click="vm.joinEvent()" ng-show="activeUser && !vm.joined" class="iconButton icon-user-plus"></a>
+  	<a ng-click="vm.leaveEvent()" ng-show="activeUser && vm.joined" class="iconButton icon-user-minus secondaryIcon"></a>
+  	<a ng-href="/events/{{ vm.event.uid }}/edit" ng-show="activeUser && activeUser.id === vm.event.organizer.id" class="iconButton icon-pencil2"></a>
+  </div>
+
+  <h4 class="secondaryHeader">
+    <span class="secondaryHeaderInner">EVENT DETAILS</span>
+  </h4>
+
+  <div class="form-horizontal fakeForm">
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Name</label>
+      <div class="col-sm-7 col-md-5">{{ vm.event.name }}</div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Type</label>
+      <div class="col-sm-7 col-md-5"> {{ vm.event.type }}</div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Organizer</label>
+      <div class="col-sm-7 col-md-5"> {{ vm.event.organizer.userName }}</div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-9"> {{ vm.event.description }}</div>
+    </div>
+
+  </div>
+
+  <h4 class="secondaryHeader mT30">
+    <span class="secondaryHeaderInner">EVENT ATTENDEES</span>
+  </h4>
+
+  <div ng-repeat="(userId, userName) in vm.event.attendees" class="attendees">
+  	<span class="icon-user6"></span>
+  	<span>{{ userName }}</span>
+  </div>
+
+</div>

@@ -1,0 +1,63 @@
+@import '../_common/vars.less';
+
+.cardsWrap {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	margin-bottom: 20px;
+}
+.eventCard {
+	display: block;
+	position: relative;
+	float: left;
+	width: 250px;
+	margin: 20px;
+	padding: 10px;
+	background-color: @gs-xlight;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	&.joined:before {
+		content: "";
+		position: absolute;
+		top: 0%;
+		right: 0%;
+		width: 0px;
+		height: 0px;
+		border-bottom: 20px solid @gs-xlight;
+		border-right: 20px solid @brand-primary;
+	}
+	.name {
+		font-size: 16px;
+		margin-bottom: 2px;
+		font-weight: bold;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.key {
+		font-weight: bold;
+		margin-right: 5px;
+		color: @brand-primary;
+	}
+	.actionBtns {
+		margin: 10px 0 0 0;
+		.iconButton {
+			vertical-align: baseline;
+		}
+	}
+}
+
+
+@media (min-width: 1199px) {
+	.eventCard {
+		width: 300px;
+	}
+}
+@media (max-width: 615px) {
+	.eventCard {
+		display: block;
+		width: 100%;
+		margin: 10px 0;
+	}
+}

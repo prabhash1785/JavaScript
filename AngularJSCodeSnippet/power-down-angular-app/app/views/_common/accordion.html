@@ -1,0 +1,15 @@
+<div>
+
+  <h4 class="secondaryHeader">
+    <span class="secondaryHeaderInner">
+    	<span>{{ title }}</span>
+    	<span ng-show="expanded" ng-click="toggleExpanded()" class="icon-minus-circle toggleIcon"></span>
+    	<span ng-show="!expanded" ng-click="toggleExpanded()" class="icon-plus-circle toggleIcon"></span>
+    </span>
+  </h4>
+
+  <div class="contentSection">
+    <div ng-transclude=""></div>
+  </div>
+
+</div>

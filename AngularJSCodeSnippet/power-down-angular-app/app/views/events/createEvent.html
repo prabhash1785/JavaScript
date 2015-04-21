@@ -1,0 +1,49 @@
+<div class="container">
+
+  <h1>
+  	<span class="icon-file-plus"></span>
+  	<span>Create Event</span>
+  </h1>
+
+  <div ng-show="!activeUser" class="alert alert-warning">Please login to create an event.</div>
+
+  <form name="createEventForm" ng-submit="vm.createEvent()" novalidate="novalidate" ng-show="activeUser" class="form-horizontal">
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">
+      	<span>Event Name</span>
+      	<span class="requiredAsterix">*</span>
+      </label>
+      <div class="col-sm-7 col-md-5">
+        <input type="text" ng-model="vm.eventModel.name" name="eventName" placeholder="Event Name" autofocus="" required="required" class="form-control"/>
+        <div ng-if="(createEventForm.$submitted || createEventForm.eventName.$touched) && createEventForm.eventName.$error.required" class="formErrorMessage">Please enter an event name.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">
+      	<span>Type</span>
+      	<span class="requiredAsterix">*</span>
+      </label>
+      <div class="col-sm-7 col-md-5">
+        <input type="text" ng-model="vm.eventModel.type" name="eventType" placeholder="Event Type" required="required" class="form-control"/>
+        <div ng-if="(createEventForm.$submitted || createEventForm.eventType.$touched) && createEventForm.eventType.$error.required" class="formErrorMessage">Please enter an event type.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-9">
+        <textarea ng-model="vm.eventModel.description" name="eventDesc" placeholder="Event Description" style="height: 150px;" class="form-control"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-3 col-sm-offset-2">
+        <button type="submit" class="btn btn-medium btn-primary">Create</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,78 @@
+@import "vars";
+
+/*------------------------------------------------------------------*\
+    BUTTONS
+\*------------------------------------------------------------------*/
+
+.btn {
+  text-shadow: none;
+  border: none;
+  span {
+    vertical-align: middle;
+  }
+  [class^="icon-"], [class*=" icon-"] {
+    margin-right: 6px;
+    vertical-align: middle;
+    color: @white;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.btn-sm {
+	padding: 4px 8px;
+}
+
+.btn-primary {
+  color: @white;
+  background-color: @brand-primary;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  color: @white;
+  background-color: @brand-primary-dark;
+}
+
+.btn-secondary {
+  color: @white;
+  background-color: @brand-secondary;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+  color: @white;
+  background-color: @brand-secondary-dark;
+}
+
+.btn-tertiary {
+  color: #000;
+  background-color: #F8CE2D;
+}
+.btn-tertiary:hover,
+.btn-tertiary:focus,
+.btn-tertiary:active {
+  color: #000;
+  background-color: #FE7A06;
+}
+
+
+.iconButton {
+	background-color: @brand-secondary;
+	color: @white;
+	padding: 5px;
+	.border-radius();
+	margin-right: 10px;
+	vertical-align: middle;
+	&:hover {
+		background-color: darken(@brand-secondary, 10%);
+		text-decoration: none;
+		color: @white;
+	}
+	&.secondaryIcon {
+		background-color: @brand-primary;
+		&:hover {
+			background-color: darken(@brand-primary, 10%);
+		}
+	}
+}

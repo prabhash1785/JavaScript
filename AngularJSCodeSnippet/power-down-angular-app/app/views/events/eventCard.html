@@ -1,0 +1,22 @@
+<div ng-class="{joined: vm.joined}" class="eventCard">
+
+  <div class="name">{{ vm.event.name }}</div>
+
+	<div>
+  	<span class="key">Type:</span>
+  	{{ vm.event.type }}
+  </div>
+
+  <div>
+  	<span class="key">Organizer:</span>
+  	{{ vm.event.organizer.userName }}
+  </div>
+
+  <div class="actionBtns">
+  	<a ng-href="/events/{{ vm.event.uid }}" class="iconButton icon-info"></a>
+  	<a ng-click="vm.joinEvent()" ng-show="vm.activeUser && !vm.joined" class="iconButton icon-user-plus"></a>
+  	<a ng-click="vm.leaveEvent()" ng-show="vm.activeUser && vm.joined" class="iconButton icon-user-minus secondaryIcon"></a>
+  	<a ng-href="/events/{{ vm.event.uid }}/edit" ng-show="vm.activeUser && vm.activeUser.id === vm.event.organizer.id" class="iconButton icon-pencil2"></a>
+  </div>
+
+</div>

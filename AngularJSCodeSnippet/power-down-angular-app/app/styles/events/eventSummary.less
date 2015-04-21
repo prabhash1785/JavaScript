@@ -1,0 +1,24 @@
+@import "../_common/vars";
+
+/*------------------------------------------------------------------*\
+    EVENT SUMMARY / EVENT EDIT
+\*------------------------------------------------------------------*/
+
+.attendees {
+	[class^="icon-"], [class*=" icon-"] {
+		color: @brand-primary;
+		margin-right: 10px;
+		font-size: 16px;
+	}
+	span {
+		vertical-align: middle;
+	}
+	.removeIcon {
+		margin-right: 10px;
+		color: @brand-secondary-light;
+		&:hover {
+			cursor: pointer;
+			color: @brand-secondary-dark;
+		}
+	}
+}
