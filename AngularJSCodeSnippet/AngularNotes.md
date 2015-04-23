@@ -33,6 +33,12 @@ Directive Transclusion:
 Providers are only used with config.
 
 
+Filter: 
+
+
+Angular Forms:
+novalidate -> HTML5 validation attribute
+
 
 Exercise:
 Filed Needed:
