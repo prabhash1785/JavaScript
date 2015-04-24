@@ -15,7 +15,8 @@ var nestedObj = {
         parents : {
             father : {
               a : 'a',
-              b : 'b'
+              b : 'b',
+              placesLived: ['Delhi', 'Bangalore', 'San Francisco']
             },
             mother : "Emmy"
         }
