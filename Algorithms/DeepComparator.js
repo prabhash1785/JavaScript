@@ -36,7 +36,7 @@ function flattenObjectHelper(obj, path, objectMap) {
     for(var x in obj) {
 
         if(dataType === 'function') {
-            var exception = "these are data objects, functions not allowed in data objects";
+            var exception = "these are data objects, functions are not allowed in data objects";
             console.log(exception);
             throw exception;
         }
