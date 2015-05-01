@@ -15,6 +15,7 @@
     <div id="container2"></div>
 
     <script type="text/jsx">
+
         var Hello = React.createClass({
             render: function() {
                 return <h1> Hello {this.props.name} </h1>;
@@ -24,6 +25,7 @@
         var element2 = React.createElement('h2', null, 'Hello Facebook!');
 
         React.render(<Hello name="React" />, document.getElementById('container'));
+
         React.render(element2, document.getElementById('container2'));
 
     </script>
