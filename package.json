@@ -1,0 +1,29 @@
+{
+  "name": "JavaScriptCode",
+  "version": "0.0.1",
+  "description": "Sample code using JavaScript and various JavaScript APIs",
+  "main": "index.js",
+  "dependencies": {
+    "moment": "^2.10.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prabhash1785/JavaScript.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Angular",
+    "jQuery",
+    "React"
+  ],
+  "author": "Prabhash Rathore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prabhash1785/JavaScript/issues"
+  },
+  "homepage": "https://github.com/prabhash1785/JavaScript"
+}
