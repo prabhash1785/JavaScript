@@ -25,6 +25,9 @@ var moment = require('../node_modules/moment');
 var presentDate = moment().format('MMMM Do YYYY, h:mm:ss a');
 console.log('Present Date: ' + presentDate);
 
+var formattedDate = moment('12-25-1995', 'MM-DD-YYYY').format('MMM DD');
+console.log('Formatted Date: ' + formattedDate);
+
 
 
 
