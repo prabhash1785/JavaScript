@@ -19,6 +19,13 @@ var dateTokens = d.toString().split(' ');
 console.log('Month: ' + dateTokens[1]);
 console.log('Date: ' + dateTokens[2]);
 
+//Date Manipulation using MomentJS API
+var moment = require('../node_modules/moment');
+
+var presentDate = moment().format('MMMM Do YYYY, h:mm:ss a');
+console.log('Present Date: ' + presentDate);
+
+
 
 
 
