@@ -13,7 +13,7 @@ function createObjInForLoopWithVarDeclaredOutside() {
 
     var targetArray = [];
 
-    for(var i = 0; i < 1000000; i++) {
+    for(var i = 0; i < 10000000; i++) {
 
         obj = {};
 
@@ -27,7 +27,7 @@ function createObjInForLoopWithVarDeclaredOutside() {
     var endTime = Date.now();
 
     var timeTaken = endTime - startTime;
-    console.log('Time taken: ' + timeTaken); //505 - 525
+    console.log('Time taken: ' + timeTaken); //for million count 505 - 525 milliseconds, for 10 million count -> 82772
 
 }
 
@@ -37,7 +37,7 @@ function createObjInForLoopWithVarDeclaredInside() {
 
     var targetArray = [];
 
-    for(var i = 0; i < 1000000; i++) {
+    for(var i = 0; i < 10000000; i++) {
 
         var obj = {};
 
@@ -51,9 +51,9 @@ function createObjInForLoopWithVarDeclaredInside() {
     var endTime = Date.now();
 
     var timeTaken = endTime - startTime;
-    console.log('Time taken: ' + timeTaken); //486 to 509
+    console.log('Time taken: ' + timeTaken); //for million count 486 to 509, for 10 million count -> 81550 milliseconds
 
 }
 
-//createObjInForLoopWithVarDeclaredOutside();
-createObjInForLoopWithVarDeclaredInside();
+createObjInForLoopWithVarDeclaredOutside();
+//createObjInForLoopWithVarDeclaredInside();
