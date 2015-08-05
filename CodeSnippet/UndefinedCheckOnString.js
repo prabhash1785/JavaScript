@@ -28,7 +28,22 @@ function test(s, t) {
 var a = 'xyz';
 var b = 'xyz';
 
-var c = typeof b;
-console.log('type of b: ' + c);
+//test(a, b);
 
-test(a, b);
+function trimString(s) {
+
+    if(!s || s.trim().length === 0) {
+        console.log('String is undefined');
+        return;
+    }
+
+    console.log('String is not undefined:: ' + s);
+
+}
+
+var s = '  sdf  ';
+trimString(s);
+
+
+
+
