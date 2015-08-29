@@ -28,6 +28,27 @@ console.log('Present Date: ' + presentDate);
 var formattedDate = moment('12-25-1995', 'MM-DD-YYYY').format('MMM DD');
 console.log('Formatted Date: ' + formattedDate); //Prints Dec 25
 
+/**
+ * Get first date of current month.
+ *
+ */
+function getFirstDateOfCurrentMonth() {
+
+    var currentDate = moment();
+
+    console.log('Current Moment Date: ' + currentDate); // 1440832576427
+    console.log('Current ISO Date: ' + currentDate.toISOString()); // 2015-08-29T07:13:13.284Z --> This is the expected ISO date format
+
+    var firstDate = currentDate.date(1);
+
+    console.log('First Moment Data: ' + firstDate); // 1440832576427
+    console.log('First ISO Date: ' + firstDate.toISOString()); // 2015-08-29T07:13:13.284Z --> This is the expected ISO date format
+
+}
+
+getFirstDateOfCurrentMonth();
+
+
 
 
 
