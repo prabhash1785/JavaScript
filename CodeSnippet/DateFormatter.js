@@ -48,6 +48,45 @@ function getFirstDateOfCurrentMonth() {
 
 getFirstDateOfCurrentMonth();
 
+/**
+ * Date manipultaion with griffin
+ *
+ */
+(function getDateWithGriffin() {
+
+    var griffinModule = require('griffin');
+    var metadata = require('g11n-metadata');
+    var griffinDateModule = griffinModule.useFeature('date').useMetadata(metadata);
+
+    var currentDate = new Date(); // this gives local time in
+    console.log('currentDate: ' + currentDate); // Mon Aug 31 2015 12:08:02 GMT-0700 (PDT)
+
+    var griffin = griffinDateModule.createHandler('en-US', 'US');
+    var griffinNormalizedDate = griffin.normalizeDate(currentDate);
+    console.log('Griffin Normalized Date: ' + griffinNormalizedDate); // Mon Aug 31 2015 13:58:55 GMT-0700 (PDT)
+
+    var griffinformattedUSTime = griffin.formatDateWithPattern(currentDate, griffin.DATE_FORMAT_UTC); // 2015-08-31T20:58:55Z
+    console.log('US formatted time: ' + griffinformattedUSTime);
+
+    //var griffinformattedUSTime2 = griffin.formatDate({
+    //    date: moment(),
+    //    timeZone: 'America/Los_Angeles'
+    //}, 'yyyy-MM-ddT23:59:59.999Z'); // Not able to format date error
+    //console.log('US formatted time: ' + griffinformattedUSTime2);
+    //
+    //var griffinFR = griffinDateModule.createHandler('fr-FR', 'FR');
+    //var griffinFRNormalizedDate = griffinFR.normalizeDate(currentDate);
+    //console.log('Griffin FR Normalized Date: ' + griffinFRNormalizedDate); // 2015-08-31T19:08:02.414Z
+    //
+    //var formattedFRDate = griffinFR.formatDateWithPattern(currentDate, 'yyyy-MM-ddT23:59:59.999Z');
+    //console.log('Formated french date: ' + formattedFRDate);
+    //
+    //var currentMomentDate = moment();
+    //console.log('Current Moment Date: ' + currentMomentDate);
+    //console.log('Current Moment Date as ISO String: ' + currentDate.toISOString()); // 2015-08-31T19:08:02.414Z
+
+})();
+
 
 
 
