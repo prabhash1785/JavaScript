@@ -4,6 +4,8 @@
   "description": "Sample code using JavaScript and various JavaScript APIs",
   "main": "index.js",
   "dependencies": {
+    "g11n-metadata": "^3.9.0",
+    "griffin": "^2.5.3",
     "moment": "^2.10.3"
   },
   "devDependencies": {},
