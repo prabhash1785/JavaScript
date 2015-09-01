@@ -5,7 +5,7 @@
 'use strict';
 
 /**
- * Format date
+ * Format date using moment lib
  *
  */
 function formatDate() {
@@ -26,7 +26,7 @@ function formatDate() {
     console.log('Date: ' + dateTokens[2]);
 
 //Date Manipulation using MomentJS API
-    var moment = require('../node_modules/moment');
+    var moment = require('moment');
 
     var presentDate = moment().format('MMMM Do YYYY, h:mm:ss a');
     console.log('Present Date: ' + presentDate);
@@ -41,6 +41,8 @@ function formatDate() {
  *
  */
 function getFirstDateOfCurrentMonth() {
+
+    var moment = require('moment');
 
     var currentDate = moment();
 
@@ -57,10 +59,10 @@ function getFirstDateOfCurrentMonth() {
 // getFirstDateOfCurrentMonth();
 
 /**
- * Date manipultaion with griffin
+ * Date manipulataion with griffin
  *
  */
-(function getDateWithGriffin() {
+function getDateWithGriffin() {
 
     var griffinModule = require('griffin');
     var metadata = require('g11n-metadata');
@@ -101,7 +103,51 @@ function getFirstDateOfCurrentMonth() {
     //console.log('Current Moment Date: ' + currentMomentDate);
     //console.log('Current Moment Date as ISO String: ' + currentDate.toISOString()); // 2015-08-31T19:08:02.414Z
 
-})();
+}
+
+/**
+ * Use moment-timezone to get local timezone time for any timezone. Then get first date from current timezone time and finally
+ * convert these time to UTC time.
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+function manipulateTimeWithMomentTimeZone() {
+
+    var moment = require('moment-timezone');
+
+    var US_TimeZone = 'America/Los_Angeles';
+    var India_TimeZone = 'Asia/Calcutta';
+
+    var date = new Date();
+    console.log('Current Time using JS API: ' + date); // Tue Sep 01 2015 08:28:37 GMT-0700 (PDT)
+
+    var momentTime = moment();
+    console.log('Moment API time: ' + momentTime); //1441121317769
+
+    var USTime = moment.tz(date, US_TimeZone);
+    console.log('US time zone: ' + USTime); //1441121317767
+    console.log('US end time formatted: ' + USTime.format()); //2015-09-01T08:28:37-07:00
+
+    var IndiaTime = moment.tz(date, India_TimeZone);
+    console.log('India time zone: ' + IndiaTime); //1441121317767
+    console.log('India end time zone formatted: ' + IndiaTime.format()); //2015-09-01T20:58:37+05:30
+
+    console.log('--------End Time As ISO String-------------');
+    console.log('US time as ISO String: ' + USTime.toISOString()); //2015-09-01T15:35:41.721Z
+    console.log('India time as ISO String: ' + IndiaTime.toISOString()); //2015-09-01T15:35:41.721Z
+
+    console.log('--------Start Time As ISO String-------------');
+    console.log('US start time ' + USTime.date(1).hour(0).minute(0).second(0).millisecond(1).format()); // 2015-09-01T00:00:00-07:00
+    console.log('US start time as ISO String ' + USTime.toISOString()); // 2015-09-01T07:00:00.001Z
+
+    console.log('India start time ' + IndiaTime.date(1).hour(0).minute(0).second(0).millisecond(1).format()); //2015-09-01T21:26:36+05:30
+    console.log('India start time as ISO String ' + IndiaTime.toISOString()); //2015-09-01T15:56:36.249Z
+
+}
+
+manipulateTimeWithMomentTimeZone();
 
 
 
