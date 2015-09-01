@@ -70,11 +70,19 @@ function getFirstDateOfCurrentMonth() {
     console.log('currentDate: ' + currentDate); // Mon Aug 31 2015 12:08:02 GMT-0700 (PDT)
 
     var griffin = griffinDateModule.createHandler('en-US', 'US');
-    var griffinNormalizedDate = griffin.normalizeDate(currentDate);
-    console.log('Griffin Normalized Date: ' + griffinNormalizedDate); // Mon Aug 31 2015 13:58:55 GMT-0700 (PDT)
 
-    var griffinformattedUSTime = griffin.formatDateWithPattern(currentDate, griffin.DATE_FORMAT_UTC); // 2015-08-31T20:58:55Z
-    console.log('US formatted time: ' + griffinformattedUSTime);
+    var griffinNormalizedDate = griffin.normalizeDate(currentDate); //it's same as new Date()
+    console.log('Griffin Normalized Date: ' + griffinNormalizedDate); // Mon Aug 31 2015 13:58:55 GMT-0700 (PDT)
+    console.log('Griffin Normalized Date in UTC format: ' + griffinNormalizedDate.toUTCString()); // Mon, 31 Aug 2015 21:31:01 GMT
+
+    var d = griffin.formatDate("2014-03-21T07:00:00.000Z");
+    console.log('d: ' + d);
+
+    var griffinformattedUSTime = griffin.formatDateWithPattern(currentDate, griffin.DATE_FORMAT_UTC);
+    console.log('US formatted time: ' + griffinformattedUSTime); // 2015-08-31T20:58:55Z
+
+    var e = griffin.formatDate(griffinformattedUSTime);
+    console.log('e: ' + e);
 
     //var griffinformattedUSTime2 = griffin.formatDate({
     //    date: moment(),
