@@ -6,7 +6,8 @@
   "dependencies": {
     "g11n-metadata": "^3.9.0",
     "griffin": "^2.5.3",
-    "moment": "^2.10.3"
+    "moment": "^2.10.3",
+    "moment-timezone": "^0.4.0"
   },
   "devDependencies": {},
   "scripts": {
